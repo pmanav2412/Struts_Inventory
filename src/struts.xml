@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <include file="struts-default.xml"/>
+    <package name="a" extends="struts-default">
+        
+        <action name="login" class="com.demo.Controllers.UserController" method="Signin">
+            <result name="success">/Success.jsp</result>
+            <result name="error">/Error.jsp</result>
+        </action>
+        <action name="signup" class="com.demo.Controllers.UserController" method="Signup">
+            <result name="success">/Success.jsp</result>
+            <result name="error">/Error.jsp</result>
+        </action>
+         <action name="insertProduct" class="com.demo.Controllers.ProductController" method="insert">
+            <result name="success">/allProducts.jsp</result>
+            <result name="error">/Error.jsp</result>
+        </action>
+        <action name="allProducts" class="com.demo.Controllers.ProductController" method="getProducts">
+            <result name="success">/allProducts.jsp</result>
+            <result name="error">/Error.jsp</result>
+        </action>
+        
+         <action name="createInvoice" class="com.demo.Controllers.UserController" method="input">
+            <result name="input">/allProducts.jsp</result>
+            <result name="error">/Error.jsp</result>
+        </action>
+        <action name="invoiceStatus" class="com.demo.Controllers.UserController" method="invoiceStatus">
+            <result name="success">/Success.jsp</result>
+            <result name="error">/Error.jsp</result>
+        </action>
+
+        
+         </package>
+</struts>
