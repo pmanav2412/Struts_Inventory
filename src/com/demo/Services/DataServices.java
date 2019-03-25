@@ -1,5 +1,6 @@
 package com.demo.Services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.HibernateException;
@@ -89,6 +90,63 @@ public class DataServices {
 			Query q = session.createQuery("From Product p Where p.userid=:userid");
 			q.setParameter("userid", uid);
 			List<Product> l = q.list();
+			System.out.println(l.size());
+			return l;
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			return null;
+		}
+
+	}
+	
+	
+	// GET SELECTED ALL PRODUCTS
+	public static List<Product> getSelectedProducts(String sellername,int i) {
+
+		try {
+			List<Product> l = new ArrayList<Product>();
+			session = HibernateUtil.getSessionFactory().openSession();
+			
+			if (i == 2) {
+				Query q = session.createQuery("From Product p Where p.userid=:userid and p.sellername=:sellername");
+				System.out.println(sellername);
+				q.setParameter("userid", name);
+				q.setParameter("sellername", sellername);
+				l = q.list();
+			} else if (i == 1) {
+				Query q = session.createQuery("From Product p Where p.userid=:userid" +  " and " +  "p.producttype=:sellername");
+				System.out.println(sellername);
+				q.setParameter("userid", name);
+				q.setParameter("sellername", sellername);
+				l = q.list();
+			} else if(i==3) {
+				Query q = session.createQuery("From Product p Where p.userid=:userid and p.productname=:productname");
+				System.out.println(sellername + "vvv");
+				q.setParameter("userid", name);
+				q.setParameter("productname", sellername);
+			}
+			System.out.println(l.size());
+			return l;
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			return null;
+		}
+
+	}
+	
+	public static List<Product> getSelectedProducts(String sellername,String producttype,int i) {
+
+		try {
+			List<Product> l = new ArrayList<Product>();
+			session = HibernateUtil.getSessionFactory().openSession();
+			System.out.println(sellername + producttype + " haha");
+			Query q = session.createQuery("From Product p Where p.userid=:userid and p.sellername=:sellername and p.producttype=:producttype");
+			System.out.println(sellername);
+			q.setParameter("userid", name);
+			q.setParameter("sellername", sellername);
+			q.setParameter("producttype", producttype);
+			l = q.list();
+			
 			System.out.println(l.size());
 			return l;
 		} catch (HibernateException e) {

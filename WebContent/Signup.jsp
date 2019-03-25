@@ -12,7 +12,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	<div class="collapse navbar-collapse" id="navbarText">
+		</div>
+	</nav>
 
 	<s:form action="signup" style="margin: 5% 20% 60% 20%" class="col-md-8">
 

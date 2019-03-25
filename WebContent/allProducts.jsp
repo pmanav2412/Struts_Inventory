@@ -48,28 +48,28 @@
 	
 <!--  ====================================================  TRYYYYYYYYYYYYYYYYYY ====================================================  -->	
 	
-	<s:set name="createInvoice" value="#session['invoiceProducts']"/>
-	<s:if test="%{#createInvoice=='YES'}">
+	<%-- <s:set name="createInvoice" value="#session['invoiceProducts']"/>
+	<s:if test="%{#createInvoice=='YES'}"> --%>
 	
-	<form  style="padding-top: 10px; padding-left: 22%">
+	<form  style="padding-top: 10px; padding-left: 22%" action="SelectedProduct.action">
   <div class="form-row align-items-center">
     <div class="col-auto">
      
-       <input type="text" class="form-control" id="inputCity" placeholder="Product name">
+       <input type="text" class="form-control" id="inputCity" placeholder="Product name" name ="product.productname">
     </div>
-    <div class="col-auto">
-     <select id="inputState"
-					class="form-control">
-					<option selected>Choose...</option>
-					<option>...</option>
-				</select>
+    <div class="col-auto" style="padding-top: 10px;">
+    <h2>
+				<s:select headerKey="-1" headerValue="Select Seller" class="form-control"
+					list="#{'1':'All Products', '2':'Core Mark', '3':'Decrescenti', '4':'Saratoga Eagle','5':'Green Mountain'}"
+					name="product.sellername" value="1"  />
+			</h2>
 			</div>
-    <div class="col-auto">
-     <select id="inputState"
-					class="form-control">
-					<option selected>Choose...</option>
-					<option>...</option>
-				</select>
+    <div class="col-auto"style="padding-top: 10px;">
+      <h2>
+				<s:select headerKey="-1" headerValue="Product Type" class="form-control"
+					list="#{'1':'All Products', '2':'Food', '3':'Alcohol', '4':'taxable','5':'Non-Tax'}"
+					name="product.producttype" value="1"  />
+			</h2>
     </div>
     <div class="col-auto" style="">
       	 <s:submit value="Submit" class="btn btn-primary form-control" /> 
@@ -79,8 +79,8 @@
   </div>
   </div>
 </form>
-</s:if>
-<s:else>
+<%-- </s:if>  THIS IS FOR SHOW FILTER FORM IF CREATE INVOICE IS ON --%>
+
 
 
 <!--  ====================================================  TRYYYYYYYYYYYYYYYYYY ====================================================  -->
@@ -127,7 +127,7 @@
 		<h3 style="margin-top: 5%; text-align: center;">NO Products
 			Available! Insert The Product First</h3>
 	</s:else>
-	</s:else>
+
 
 	<%-- <h1><s:property value="i[0].productname"/> </h1> --%>
 </body>

@@ -12,7 +12,11 @@
 <title>Landing Page</title>
 </head>
 <body>
-
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	<div class="collapse navbar-collapse" id="navbarText">
+		</div>
+	</nav>
+	
 <div style="padding: 5% 40% 60% 40%">
 	<s:form action="login" >
 		<s:label value="Email"/>

@@ -67,8 +67,9 @@ public class ProductController extends ActionSupport implements SessionAware {
 
 	public String insert() {
 	    String[] array = {"Food","Beer","taxable","Non-Tax"};
+	    String[] sellername = { "Core Mark", "Decrescenti", "Saratoga Eagle","Green Mountain"};
 		Product productInfo = new Product(product.getProductname(), product.getWeight(), product.getQuantity(),
-				product.getBrand(), product.getSellingprice(), product.getRetailprice(), product.getSellername(),
+				product.getBrand(), product.getSellingprice(), product.getRetailprice(),  sellername[Integer.parseInt(product.getSellername())-1],
 				  array[Integer.parseInt(product.getProducttype())-1]);
 		productInfo.setUserid((String) usersession.get("USER_EMAIL"));
 		boolean b = DataServices.SaveProduct(productInfo);
@@ -84,10 +85,10 @@ public class ProductController extends ActionSupport implements SessionAware {
 	// ======== (GET ALL PRODUCTs) ========
 	
 	public String getProducts() {
-		String emailid= (String) usersession.get("USER_EMAIL");
-		System.out.println("number of Products for ="+ emailid);
-		 i = DataServices.getAllProducts((String) usersession.get("USER_EMAIL"));
-		 System.out.println(i.size());
+		
+		
+		i = DataServices.getAllProducts((String) usersession.get("USER_EMAIL"));
+		System.out.println(i.size());
 		if(i.size()>0) {
 
 			condition = "DATA_CHHE";
@@ -98,10 +99,67 @@ public class ProductController extends ActionSupport implements SessionAware {
 			return SUCCESS;
 		}
 	}
+	
+	
+	
+	// ======== (GET ALL SELECTED PRODUCTs) ========
+	
+	public String getSelectedProducts() {
+		System.out.println("Ahi to avi yu chhe!");
+		 String[] sellername = {"All Products","Core Mark","Decrescenti","Saratoga Eagle","Green Mountain"};
+		 String[] producttype = { "All Products","Food", "Alcohol", "taxable","Non-Tax"};
+		 DataServices.name = (String) usersession.get("USER_EMAIL");
+		 
+		System.out.println(product.getProductname().isEmpty() + " " + product.getSellername() + " " +  product.getProducttype());
+		if	(product.getProductname().isEmpty() &&  Integer.parseInt(product.getSellername()) == 1 && Integer.parseInt(product.getProducttype()) != 1) 
+		{
+				System.out.println("1");
+				i = DataServices.getSelectedProducts(producttype[Integer.parseInt(product.getProducttype())-1],1);
+		}
+		else if	(product.getProductname().isEmpty() && Integer.parseInt(product.getSellername()) != 1 && Integer.parseInt(product.getProducttype()) == 1)
+		{
+				System.out.println("2");
+				i = DataServices.getSelectedProducts(sellername[Integer.parseInt(product.getSellername())-1],2);
+		}
+		else if	(!product.getProductname().isEmpty() && Integer.parseInt(product.getSellername()) == 1 && Integer.parseInt(product.getProducttype()) == 1) 
+		{
+				System.out.println("3");
+				i = DataServices.getSelectedProducts(product.getProductname(),3);
+		}
+		else if	(!product.getProductname().isEmpty() && Integer.parseInt(product.getSellername()) != 1 && Integer.parseInt(product.getProducttype()) == 1)
+		{
+			    System.out.println("4");
+			    i = DataServices.getSelectedProducts(sellername[Integer.parseInt(product.getSellername())-1],4);
+		}
+		else if	(!product.getProductname().isEmpty() && Integer.parseInt(product.getSellername()) == 1 && Integer.parseInt(product.getProducttype()) != 1) 
+		{
+				System.out.println("5");
+				i = DataServices.getSelectedProducts(sellername[Integer.parseInt(product.getSellername())-1],5);
+		}
+		else if	(product.getProductname().isEmpty() && Integer.parseInt(product.getSellername()) != 1 && Integer.parseInt(product.getProducttype()) != 1) 
+		{
+				System.out.println("6");
+				i = DataServices.getSelectedProducts(sellername[Integer.parseInt(product.getSellername())-1],producttype[Integer.parseInt(product.getProducttype())-1],6);
+		}
+		else
+		{
+				System.out.println("7");
+				i = DataServices.getAllProducts((String) usersession.get("USER_EMAIL"));
+		}
+		
+		System.out.println(i.size());
+		if(i.size()>0) {
 
-	
-	
-
-	
+			condition = "DATA_CHHE";
+			return SUCCESS;
+		}else {
+		
+			condition = "DATA_NATHI";
+			return SUCCESS;
+		}
+		
+	}
 
 }
+
+

@@ -39,10 +39,10 @@
 		</div>
 	</nav>
 
-	<s:set name="createInvoice" value="#session['USER_EMAIL']" />
+	<s:set name="createInvoice" value="#session['invoiceProducts']" />
 
 	<s:if test="%{#createInvoice=='YES'}">
-		 <s:form action="#" style="margin: 3% 20% 60% 20%">
+		 <%-- <s:form action="#" style="margin: 3% 20% 60% 20%">
 
 		<div class="form-group">
 			
@@ -50,7 +50,7 @@
 				placeholder="Product Name" label="Product Name" />
 				<s:submit value="Submit" class="btn btn-primary" style="align-content : center;margin: 12px 25%;" />
 		</div>
-		</s:form> 
+		</s:form> --%> 
 
 	</s:if>
 	<s:else>

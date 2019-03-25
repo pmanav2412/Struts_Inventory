@@ -91,7 +91,7 @@
 			<h2>
 				<s:label value="Seller Name" style="padding-top: 10px;"></s:label>
 				<s:select headerKey="-1" headerValue="Select Seller"
-					list="#{'1':'Green Mountain', '2':'Core Mark', '3':'Decrescenti', '4':'Saratoga Eagle'}"
+					list="#{ '1':'Core Mark', '2':'Decrescenti', '3':'Saratoga Eagle','4':'Green Mountain'}"
 					name="product.sellername" value="1" />
 			</h2>
 			<%-- <s:label value="Seller Name" />
@@ -102,7 +102,7 @@
 			<h2>
 				<s:label value="Product Type" style="padding-top: 10px;"></s:label>
 				<s:select headerKey="-1" headerValue="Select Type"
-					list="#{'1':'Food', '2':'Beer', '3':'taxable', '4':'Non-Tax'}"
+					list="#{'1':'Food', '2':'Alcohol', '3':'taxable', '4':'Non-Tax'}"
 					name="product.producttype" value="1" />
 			</h2>
 
